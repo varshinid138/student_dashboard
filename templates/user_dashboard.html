@@ -1,0 +1,104 @@
+<!-- user_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .download-button:hover {
+            background-color: #45a049;
+        }
+        .flash-messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            background-color: #e7f9e7;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+    <h2>Your Assigned Projects:</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Project Link</th>
+                <th>Upload Folders</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in assigned_projects %}
+            <tr>
+                <td>{{ project.project_name }}</td>
+                <td><a href="{{ project.project_link }}" target="_blank">{{ project.project_link }}</a></td>
+                <td>
+                    {% if project.uploaded_files %}
+                        <ul>
+                            {% for file in project.uploaded_files %}
+                                <li>{{ file }}</li> <!-- Show uploaded filenames here -->
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <form method="post" action="/upload/<project_name>" enctype="multipart/form-data">
+                        <input type="file" name="upload" webkitdirectory multiple>
+                        <button type="submit">Upload Folder</button>
+                    </form>
+                    
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <script>
+        // Add event listeners to each upload input field
+        document.querySelectorAll("input[type='file'][id^='upload_']").forEach(function(input) {
+            input.addEventListener("change", function() {
+                if (input.webkitdirectory) {
+                    input.setAttribute("multiple", ""); // Ensure multiple is set when using webkitdirectory
+                } else {
+                    input.removeAttribute("multiple");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- create_project.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project</title>
+</head>
+<body>
+    <h1>Create New Project</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="project_name">Project Name:</label>
+        <input type="text" name="project_name" required>
+        
+        <label for="project_file">Upload Project File:</label>
+        <input type="file" name="project_file" accept=".txt, .docx" required>
+        
+        <input type="submit" value="Create Project">
+    </form>
+    
+    <button onclick="window.location.href='/admin/users';">Back to User List</button>
+</body>
+</html>

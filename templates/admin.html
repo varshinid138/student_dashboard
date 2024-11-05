@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}
+Admin Dashboard
+{% endblock %}
+{% block content %}
+<h1>Hi {{ current_user.username }}, {{ current_user.usertype }}</h1>
+<a href="{{ url_for('signup') }}" class="button">Create User</a>
+<button onclick="window.location.href='/admin/users';">View All Users</button>
+
+<div class="dashboard-container">
+    <div class="sidebar">
+        <h2>Admin Menu</h2>
+        <a href="{{ url_for('some_admin_action_1') }}">Action 1</a>
+        <a href="{{ url_for('some_admin_action_2') }}">Action 2</a>
+        <a href="{{ url_for('some_admin_action_3') }}">Action 3</a>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h3>Welcome to the Admin Dashboard</h3>
+            <p>Manage users, view reports, and more.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Admin Dashboard Styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .dashboard-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .sidebar {
+        background: #4A90E2;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        height: auto;
+    }
+
+    .sidebar h2 {
+        margin: 0 0 15px 0;
+        font-size: 20px;
+    }
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        background: #50E3C2;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Button styling */
+    .button {
+        background: #50E3C2;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none; /* Remove underline for the link */
+    }
+
+    .button:hover {
+        background: #4A90E2;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .dashboard-container {
+            grid-template-columns: 1fr; /* Stack sidebar and content on smaller screens */
+        }
+
+        .sidebar {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+    "2": {
+        "username": "demo09",
+        "assigned_projects": [
+            {
+                "project_name": "projects/crime.txt",
+                "project_link": "https://objectstore.e2enetworks.net/project/projects/crime.txt"
+            }
+        ]
+    }
+}

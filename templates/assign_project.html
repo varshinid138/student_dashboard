@@ -1,0 +1,60 @@
+<!-- assign_project.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Project</title>
+    <style>
+        /* Assign Project Styling */
+        .assign-project-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        form label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        form select, form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        form input[type="submit"]:hover {
+            background-color: #50E3C2;
+        }
+        </style>
+        
+</head>
+<body>
+    <h1>Assign Projects to User</h1>
+    <form method="POST">
+        <h3>Select up to 4 projects:</h3>
+        {% for project in projects %}
+            <input type="checkbox" name="projects" value="{{ project.project_name }}"> {{ project.project_name }}<br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Assign Projects">
+    </form>
+    <button onclick="window.location.href='/admin/users';">Back to User List</button>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "_render_elements.html" import render_field %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+<h1>Sign Up</h1>
+<form method="post" action="{{ url_for('signup') }}">
+    {{ form.csrf_token }}
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.usertype) }}
+    {{ form.submit }}
+
+</form>
+<style>
+    /* Signup Form Styling */
+    form {
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 25px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    form h1 {
+        font-size: 1.8em;
+        text-align: center;
+        color: #4A90E2;
+    }
+    
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4A90E2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    form input[type="submit"]:hover {
+        background-color: #50E3C2;
+    }
+    </style>
+    
+{% endblock %}

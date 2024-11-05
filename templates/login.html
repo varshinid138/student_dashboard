@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% from "_render_elements.html" import render_field %}
+{% block title %}
+Log In
+{% endblock %}
+{% block content %}
+<h1>Log In</h1>
+<form method="post" action="{{ url_for('login') }}">
+    {{ form.csrf_token }}
+    {{ render_field(form.username) }}
+    {{ render_field(form.password) }}
+    <p>{{ form.remember }} {{ form.remember.label }}</p>
+    {{ form.submit }}
+</form>
+<style>
+    /* Login Form Styling */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    form h1 {
+        font-size: 1.8em;
+        text-align: center;
+        color: #4A90E2;
+    }
+    
+    form input[type="text"],
+    form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4A90E2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    form input[type="submit"]:hover {
+        background-color: #50E3C2;
+    }
+    </style>
+    
+{% endblock %}

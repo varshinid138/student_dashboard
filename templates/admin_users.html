@@ -1,0 +1,46 @@
+<!-- admin_users.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>List of Users</h1>
+
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Assigned Projects</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                {% if user.assigned_projects %}
+                    <ul>
+                    {% for project in user.assigned_projects %}
+                        <li><a href="{{ project.project_link }}">{{ project.project_name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    No projects assigned
+                {% endif %}
+            </td>
+            <td>
+                <a href="/admin/assign_project/{{ user.id }}">Assign Project</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button onclick="window.location.href='/logout';">Back to Login</button>
+    <button onclick="window.location.href='/admin/create_project';">Create New Project</button>
+    
+</body>
+</html>
+
